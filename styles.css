@@ -175,3 +175,6 @@ p { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* block-tower scrollbar (blockbar.js), no native scrollbar */
+:root { --bb-accent: var(--barbicide); --bb-ink: var(--clipper); --bb-bone: var(--steam); --bb-line: color-mix(in oklab, var(--steel) 55%, transparent); --bb-font: var(--font-text); }

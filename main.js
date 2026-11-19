@@ -151,6 +151,7 @@ new ResizeObserver(() => { build(); schedule(); }).observe(canvas);
 let pinTrigger = null, lenis = null;
 if (!reduce) {
   lenis = new Lenis({ lerp: 0.12, smoothWheel: true });
+  window.__lenis = lenis; // blockbar.js
   lenis.on("scroll", ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
