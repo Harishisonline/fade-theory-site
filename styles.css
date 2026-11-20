@@ -46,13 +46,18 @@ p { text-wrap: pretty; }
 .tbc { text-decoration: underline dotted; text-decoration-thickness: 1.5px; text-underline-offset: .28em; text-decoration-color: color-mix(in oklab, currentColor 55%, transparent); }
 
 /* ---------- buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .95em 1.5em; background: var(--barbicide); color: var(--clipper); border: 1.5px solid var(--barbicide); border-radius: var(--radius); text-decoration: none; font-weight: 600; letter-spacing: .01em; transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease); }
-.btn:hover { background: var(--steam); border-color: var(--steam); }
-.btn:active { transform: translateY(1px); }
-.btn--small { padding: .55em 1em; font-size: var(--step--1); }
-.btn--line { background: transparent; color: var(--ink); border-color: var(--ink); }
-.btn--line:hover { background: var(--ink); color: var(--steam); border-color: var(--ink); }
-.btn--ghost { background: transparent; color: var(--steam); border-color: color-mix(in oklab, var(--steam) 40%, transparent); }
+/* tactile signage bricks: hard edge, lift on hover, press on click (0.16s, like the best references) */
+.btn { --edge: var(--barbicide-ink); --edge-h: var(--steel-ink);
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em; padding: .95em 1.5em; background: var(--barbicide); color: var(--clipper); border: 1.5px solid var(--barbicide); border-radius: var(--radius); text-decoration: none; font-weight: 600; letter-spacing: .01em;
+  box-shadow: 0 4px 0 var(--edge); transition: transform .16s cubic-bezier(.2,.8,.2,1), box-shadow .16s cubic-bezier(.2,.8,.2,1), background-color .18s, color .18s, border-color .18s; }
+@media (hover: hover) { .btn:hover { transform: translateY(-2px); background: var(--steam); border-color: var(--steam); box-shadow: 0 6px 0 var(--edge-h); } }
+.btn:focus-visible { background: var(--steam); border-color: var(--steam); }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--edge-h); transition-duration: .06s; }
+.btn--small { padding: .55em 1em; font-size: var(--step--1); box-shadow: 0 3px 0 var(--edge); }
+.btn--line { --edge: var(--ink); --edge-h: var(--barbicide-ink); background: transparent; color: var(--ink); border-color: var(--ink); }
+@media (hover: hover) { .btn--line:hover { background: var(--ink); color: var(--steam); border-color: var(--ink); } }
+.btn--ghost { --edge: color-mix(in oklab, var(--steam) 30%, transparent); --edge-h: var(--steel-ink); background: transparent; color: var(--steam); border-color: color-mix(in oklab, var(--steam) 40%, transparent); }
+@media (hover: hover) { .btn--ghost:hover { color: var(--clipper); } }
 .link { text-underline-offset: .3em; text-decoration-thickness: 1px; font-weight: 500; }
 .link:hover { text-decoration-thickness: 2px; }
 .actions { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; margin-top: 2rem; }
@@ -60,7 +65,7 @@ p { text-wrap: pretty; }
 /* ---------- nav */
 .nav { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; justify-content: space-between; align-items: center; padding: .85rem var(--gutter); color: var(--steam); background: color-mix(in oklab, var(--clipper) 92%, transparent); }
 .nav nav { display: flex; gap: 1.6rem; align-items: center; }
-.nav__link { text-decoration: none; font-size: var(--step--1); color: var(--steel); transition: color .2s; }
+.nav__link { text-decoration: none; font-size: var(--step--1); color: var(--steel); transition: color .15s; }
 .nav__link:hover { color: var(--steam); }
 .brand { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; font: 900 1.45rem/1 var(--font-display); text-transform: uppercase; letter-spacing: .02em; }
 .brand__mark { width: 1.5rem; height: 1.5rem; }
@@ -178,3 +183,4 @@ p { text-wrap: pretty; }
 
 /* block-tower scrollbar (blockbar.js), no native scrollbar */
 :root { --bb-accent: var(--barbicide); --bb-ink: var(--clipper); --bb-bone: var(--steam); --bb-line: color-mix(in oklab, var(--steel) 55%, transparent); --bb-font: var(--font-text); }
+:root { --cr-accent: var(--barbicide); }
